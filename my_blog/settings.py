@@ -1,3 +1,4 @@
+#coding:utf-8
 """
 Django settings for my_blog project.
 
@@ -31,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+
+    'bootstrap_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -103,5 +106,20 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+
+# 其它 存放静态文件的文件夹，里面不能包含 STATIC_ROOT
+STATICFILES_DIRS = (
+    #os.path.join(BASE_DIR, "static"),
+    #'/home/sws/web/my_blog/static',
+    ('css', os.path.join(STATIC_ROOT,'css')),
+    ('js', os.path.join(STATIC_ROOT,'js')),
+)
+
+
+#Media_url
+MEDIA_URL = '/uploads/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'uploads')

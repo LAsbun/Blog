@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ article.title }}</title>
-</head>
-<body>
-    <div>
-        {% for article in article_list %}
-            <h2 style="color: darkgreen">{{ article.title }}</h2><br>
-            <h3 style="color: black">{{ article.content }}</h3>
-
-        {% endfor %}
+{% extends 'base.html' %}
+{% block content %}
+     <div style="
+    margin-left: 200px;
+    margin-right: 320px;
+    font-size: 14px;">
+        <h2 style="color: darkgreen">{{ article.title }}</h2><br>
+        <h3 style="color: black">
+            {% autoescape off %}
+            {{ article.content }}
+            {% endautoescape %}
+        </h3>
     </div>
-
-</body>
-</html>
+{% endblock content %}

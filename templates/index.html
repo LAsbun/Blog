@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div style="
+    margin-left: 200px;
+    margin-right: 320px;
+    font-size: 14px;">
+    {% for article in article_list %}
+        <h1>{{ article.title }}<h2 style="font-size: 10px; "><code>{{ article.create_time }}</code></h2></h1>
+
+        {% autoescape off %}
+        {{article.content}}
+        {% endautoescape %}<br>
+        <a href="{% url "article" article.id %}">全文阅读</a>
+
+    {% endfor %}
+  </div>
+
+
+    {% include 'paginator.html' %}
+   {% endblock content %}
+
+
+
+
+        <!-- 这是个搜索框
+        <form action="/search/" method="post" style="margin-left: 60%; "
+            class="navbar-form navbar-left" role="search">
+        {% csrf_token %}
+          <div class="fodrm-group">
+          <input type="text" name="name" class="form-control" placeholder="请输入要查找的内容">
+        </div>
+        <button type="submit" class="btn btn-default">查找</button>
+      </form>
+      -->

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div style="
+    margin-left: 200px;
+    margin-right: 320px;
+    font-size: 14px;">
+        {% for article in article_list %}
+            <code style="color: #999999">{{ article.create_time|date:"G M Y P" }} &nbsp;&nbsp;
+                <a style="color: #777777;" href="{%  url 'article' article.id %}"> {{ article.title }}</a></code><br>
+        {% endfor %}
+    </div>
+{% endblock %}

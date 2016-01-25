@@ -74,7 +74,6 @@ def aboutme(request):
     try:
         myself = AboutMe.objects.all()[0]
         tag_list = myself.self_tag.split(',')
-        print tag_list[0], type(tag_list)
         content = myself.something_to_say
         context={'tag_list':tag_list,
                  'content':content,

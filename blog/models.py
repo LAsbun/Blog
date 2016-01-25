@@ -1,4 +1,4 @@
-#coding: utf-8
+       #coding: utf-8
 from django.db import models
 import datetime as dt
 
@@ -10,7 +10,8 @@ class Navigation(models.Model):
                              verbose_name='导航条名称')
     create_time = models.DateTimeField(auto_now_add=True,
                                        verbose_name='创建时间')
-
+    url_name = models.CharField(max_length=20,
+                                verbose_name='导航条地址')
     class Meta:
         ordering=['-create_time']
         verbose_name='导航'
@@ -30,7 +31,7 @@ class User(models.Model):
     img = models.ImageField(upload_to=upload_to,
                            # width_field=50,
                             #height_field=50,
-                            verbose_name='头像')
+                            verbose_name='头像', blank=True)
     create_time = models.DateTimeField(auto_now_add=True,
                                        verbose_name='创建时间')
 
@@ -97,8 +98,6 @@ class Article(models.Model):
         return self.title
 
 
-
-
 #评论
 class Comment(models.Model):
     conment_article=models.ForeignKey(Article,
@@ -117,3 +116,18 @@ class Comment(models.Model):
 
     def __uniccode__(self):
         return self.conment_name
+
+
+class AboutMe(models.Model):
+    self_tag = models.CharField(max_length=120,
+                                verbose_name='自我定义标签')#以'，'分割开
+    something_to_say = models.TextField(verbose_name='自定义')
+
+    create_time = models.DateTimeField(auto_now=True,)
+
+    class Meta:
+        verbose_name = '关于'
+        verbose_name_plural = verbose_name
+
+    def __unicode__(self):
+        return self.self_tag

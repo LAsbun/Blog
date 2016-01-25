@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block index_content %}
+    <div class="single-blog">
 
-</body>
-</html>
+        <article>
+            {% for tag in tag_list %}
+                <li class="btn btn-default">{{ tag }}</li>
+            {% endfor %}
+        <hr>
+            <div class="post-article">
+                {% autoescape off %}
+                    {{ content}}
+                {% endautoescape %}
+            </div>
+        </article>
+    </div>
+{% endblock %}

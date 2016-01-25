@@ -1,9 +1,5 @@
+{% extends 'base.html' %}
 
-{% block nav_head %}
-    {% for nav in nav_list.reverse %}
-        <li><a href="/templates/blog.html">{{ nav }}</a></li>
-    {% endfor %}
-{% endblock %}
 
 {% block index_content %}
     {% for article in article_list %}
@@ -15,13 +11,34 @@
                     <span>By <a href="">{{ article.author }}</a></span>
 
                 </div>
-                <div clasas="post-article">
+                <div class="post-article">
                     {% autoescape off %}
-                        {{ article.content|slice:'200'}}
+                        {{ article.content|slice:'350'}}
                     {% endautoescape %}
                 </div>
+                <br>
                 <a href="{% url 'article' article.id %}" class="btn btn-readmore">Read More</a>
             </article>
         </div>
     {% endfor %}
+{% endblock %}
+
+
+{%  block pagination %}
+    <div class="pagination paper">
+    <span class="step-links">
+        {% if article_list.has_previous %}
+            <a class="btn btn-default" href="?page={{ article_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ article_list.number }} of {{ article_list.paginator.num_pages }}.
+        </span>
+
+        {% if article_list.has_next %}
+            <a class="btn btn-default" href="?page={{ article_list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+    </div>
+    </div>
 {% endblock %}

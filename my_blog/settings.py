@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
 
-    'bootstrap_admin',
+    #'bootstrap_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -116,6 +116,8 @@ STATICFILES_DIRS = (
     #'/home/sws/web/my_blog/static',
     ('css', os.path.join(STATIC_ROOT,'css')),
     ('js', os.path.join(STATIC_ROOT,'js')),
+    ('images', os.path.join(STATIC_ROOT,'images')),
+    ('uploads', os.path.join(STATIC_ROOT,'uploads')),
 )
 
 

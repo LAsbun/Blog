@@ -1,18 +1,27 @@
-{% extends 'base.html' %}
-{% block content %}
-<div class="content">
-        {% for article in article_list %}
-            <h2 style="color: #787888" >{{ article.title }}</h2>
-            <br>
-            <h4 style="color: #C9DBED;"> {{ article.create_time }}</h4>
-            <br>
-            <h3>
-                {% autoescape off %}
-                    {{ article.content }}
-                {% endautoescape %}
-            </h3>
-            <a href="{% url 'article' article.id %}">阅读全文</a>
-        {% endfor %}
-    </div>
-    {% include 'foot.html' %}
-{% endblock content %}
+
+{% block nav_head %}
+    {% for nav in nav_list.reverse %}
+        <li><a href="/templates/blog.html">{{ nav }}</a></li>
+    {% endfor %}
+{% endblock %}
+
+{% block index_content %}
+    {% for article in article_list %}
+        <div class="single-blog">
+            <article>
+                <h4 class="post-title"><a href="">{{ article.title }}</a></h4>
+                <div class="post-meta text-uppercase">
+                    <span>{{ article.create_time }}</span>
+                    <span>By <a href="">{{ article.author }}</a></span>
+
+                </div>
+                <div clasas="post-article">
+                    {% autoescape off %}
+                        {{ article.content|slice:'200'}}
+                    {% endautoescape %}
+                </div>
+                <a href="{% url 'article' article.id %}" class="btn btn-readmore">Read More</a>
+            </article>
+        </div>
+    {% endfor %}
+{% endblock %}
